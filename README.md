@@ -1,8 +1,9 @@
 # CodeRabbit CLI Recall Loop
 
-A reusable skill for running three independent CodeRabbit CLI reviews after a
-feature is complete. It consolidates duplicate findings into one approval queue
-and keeps the engineer in control of every code change.
+A reusable skill designed to maximize bug-detection recall and account for the
+nondeterministic nature of AI reviews. After a feature is complete, it runs three
+independent CodeRabbit CLI reviews, consolidates duplicate findings into one
+approval queue, and keeps the engineer in control of every code change.
 
 ## Workflow
 
