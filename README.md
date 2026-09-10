@@ -5,6 +5,36 @@ nondeterministic nature of AI reviews. After a feature is complete, it runs thre
 independent CodeRabbit CLI reviews, consolidates duplicate findings into one
 approval queue, and keeps the engineer in control of every code change.
 
+## Inspect before installing
+
+You do not need to download the ZIP to understand what the skill does. Its
+complete, readable source is available in the
+[expanded skill directory](./coderabbit-cli-review-loop/):
+
+```text
+coderabbit-cli-review-loop/
+├── SKILL.md
+├── agents/
+│   └── openai.yaml
+└── scripts/
+    └── review_fresh.sh
+```
+
+- [`SKILL.md`](./coderabbit-cli-review-loop/SKILL.md) defines the three-review,
+  deduplication, and human-approval workflow.
+- [`review_fresh.sh`](./coderabbit-cli-review-loop/scripts/review_fresh.sh)
+  creates each fresh temporary review context and invokes CodeRabbit CLI.
+- [`openai.yaml`](./coderabbit-cli-review-loop/agents/openai.yaml) provides the
+  Codex display metadata and default prompt.
+
+There are no compiled binaries in the skill. The ZIP contains the same three
+files shown above, so every instruction and command can be reviewed on GitHub
+before downloading it.
+
+The runner uses the repository's existing CodeRabbit configuration and review
+profile, runs a normal review rather than `--light`, and removes its temporary
+clone afterward. It does not edit, stage, commit, or automatically fix code.
+
 ## Workflow
 
 ```mermaid
@@ -54,8 +84,10 @@ does not select or override the configured review profile and never uses
 
 ## Install
 
-Download [coderabbit-cli-review-loop.zip](./coderabbit-cli-review-loop.zip) and
-extract it into the appropriate skills directory:
+First, [inspect the expanded source](./coderabbit-cli-review-loop/). When you are
+ready to install it, download
+[coderabbit-cli-review-loop.zip](./coderabbit-cli-review-loop.zip) and extract it
+into the appropriate skills directory:
 
 ```text
 Codex personal:       ~/.codex/skills/
@@ -77,25 +109,6 @@ Run the skill after feature implementation is complete:
 Codex:       $coderabbit-cli-review-loop review this completed feature
 Claude Code: /coderabbit-cli-review-loop
 ```
-
-## Repository contents
-
-```text
-.
-├── README.md
-├── coderabbit-cli-review-loop.zip
-└── coderabbit-cli-review-loop/
-    ├── SKILL.md
-    ├── agents/
-    │   └── openai.yaml
-    └── scripts/
-        └── review_fresh.sh
-```
-
-- `SKILL.md` defines the review, deduplication, and approval workflow.
-- `review_fresh.sh` creates each isolated review context and enforces a maximum of
-  three successful reviews for an exact snapshot.
-- `openai.yaml` provides Codex display metadata and the default prompt.
 
 ## Evidence and scope
 
