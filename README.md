@@ -4,8 +4,6 @@ A reusable skill for running three independent CodeRabbit CLI reviews after a
 feature is complete. It consolidates duplicate findings into one approval queue
 and keeps the engineer in control of every code change.
 
-See the [one-page overview](./ONE-PAGER.md) for a compact customer handout.
-
 ## Workflow
 
 ```mermaid
@@ -84,7 +82,6 @@ Claude Code: /coderabbit-cli-review-loop
 ```text
 .
 ├── README.md
-├── ONE-PAGER.md
 ├── coderabbit-cli-review-loop.zip
 └── coderabbit-cli-review-loop/
     ├── SKILL.md
@@ -98,7 +95,6 @@ Claude Code: /coderabbit-cli-review-loop
 - `review_fresh.sh` creates each isolated review context and enforces a maximum of
   three successful reviews for an exact snapshot.
 - `openai.yaml` provides Codex display metadata and the default prompt.
-- `ONE-PAGER.md` is the concise customer-facing overview.
 
 ## Evidence and scope
 
