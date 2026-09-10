@@ -5,36 +5,6 @@ nondeterministic nature of AI reviews. After a feature is complete, it runs thre
 independent CodeRabbit CLI reviews, consolidates duplicate findings into one
 approval queue, and keeps the engineer in control of every code change.
 
-## Inspect before installing
-
-You do not need to download the ZIP to understand what the skill does. Its
-complete, readable source is available in the
-[expanded skill directory](./coderabbit-cli-review-loop/):
-
-```text
-coderabbit-cli-review-loop/
-├── SKILL.md
-├── agents/
-│   └── openai.yaml
-└── scripts/
-    └── review_fresh.sh
-```
-
-- [`SKILL.md`](./coderabbit-cli-review-loop/SKILL.md) defines the three-review,
-  deduplication, and human-approval workflow.
-- [`review_fresh.sh`](./coderabbit-cli-review-loop/scripts/review_fresh.sh)
-  creates each fresh temporary review context and invokes CodeRabbit CLI.
-- [`openai.yaml`](./coderabbit-cli-review-loop/agents/openai.yaml) provides the
-  Codex display metadata and default prompt.
-
-There are no compiled binaries in the skill. The ZIP contains the same three
-files shown above, so every instruction and command can be reviewed on GitHub
-before downloading it.
-
-The runner uses the repository's existing CodeRabbit configuration and review
-profile, runs a normal review rather than `--light`, and removes its temporary
-clone afterward. It does not edit, stage, commit, or automatically fix code.
-
 ## Workflow
 
 ```mermaid
@@ -84,10 +54,8 @@ does not select or override the configured review profile and never uses
 
 ## Install
 
-First, [inspect the expanded source](./coderabbit-cli-review-loop/). When you are
-ready to install it, download
-[coderabbit-cli-review-loop.zip](./coderabbit-cli-review-loop.zip) and extract it
-into the appropriate skills directory:
+Download [coderabbit-cli-review-loop.zip](./coderabbit-cli-review-loop.zip) and
+extract it into the appropriate skills directory:
 
 ```text
 Codex personal:       ~/.codex/skills/
@@ -116,3 +84,31 @@ In a controlled single-repository experiment, three fresh uncommitted reviews
 collectively found 9 of 10 known core defects, and 25 of 26 reported findings were
 verified. Results will vary by repository, and deterministic tests remain
 essential.
+
+## What's inside the ZIP
+
+The complete, readable source is available in the
+[expanded skill directory](./coderabbit-cli-review-loop/):
+
+```text
+coderabbit-cli-review-loop/
+├── SKILL.md
+├── agents/
+│   └── openai.yaml
+└── scripts/
+    └── review_fresh.sh
+```
+
+- [`SKILL.md`](./coderabbit-cli-review-loop/SKILL.md) defines the three-review,
+  deduplication, and human-approval workflow.
+- [`review_fresh.sh`](./coderabbit-cli-review-loop/scripts/review_fresh.sh)
+  creates each fresh temporary review context and invokes CodeRabbit CLI.
+- [`openai.yaml`](./coderabbit-cli-review-loop/agents/openai.yaml) provides the
+  Codex display metadata and default prompt.
+
+There are no compiled binaries in the skill. The ZIP contains the same three
+files shown above, so every instruction and command can be reviewed on GitHub.
+
+The runner uses the repository's existing CodeRabbit configuration and review
+profile, runs a normal review rather than `--light`, and removes its temporary
+clone afterward. It does not edit, stage, commit, or automatically fix code.
