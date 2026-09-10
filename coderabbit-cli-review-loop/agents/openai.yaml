@@ -1,0 +1,4 @@
+interface:
+  display_name: "CodeRabbit CLI Recall Loop"
+  short_description: "Deduplicate three reviews for human approval"
+  default_prompt: "Use $coderabbit-cli-review-loop to review this completed feature and ask me before fixing anything."
